@@ -19,18 +19,36 @@ var detectNetwork = function(cardNumber) {
   //Pseudocode:
   //create a length variable
   var len = cardNumber.length;
+  //create a first digit variable
+  var first = cardNumber[0];
+  //create a second digit variable
+  var second = cardNumber[1];
+  //if the first digit is 4 and length is 13, 16 or 19
+  if (first === '4') {
+  	if (len === 13 || len === 16 || len === 19) {
+  		//return visa
+  		return 'Visa';
+  	}
+  //if the first digit is 5 and the second digits are 1-5, and length is 16
+  } else if (first === '5') {
+  	if (len === 16 && second === '1' || second === '2' || second === '3' || second === '4' || second === '5') {
+  		//return mastercard
+  		return 'Mastercard';
+  	}  
   // if the first digits are 3, then
-  if (cardNumber[0] === '3') {
+  } else {
+    if (first === '3') {
   	//if the second digits are equal to 8 or 9 and the lengths are 14
-  	if (cardNumber[1] === '8' || cardNumber[1] === '9' && len === 14) {
+  	  if (len === 14 && second === '8' || second === '9') {
   		//return diner's club
   		return 'Diner\'s Club';
   	}
     //if the second digits are equal to 4 or 7 and the lengths are 15
-    if (cardNumber[1] === '4' || cardNumber[1] === '7' && len === 15) {
+    if (len === 15 && second === '4' || second === '7') {
     	//return amex 
     	return 'American Express';
     }
+  }
   }
 };
 
