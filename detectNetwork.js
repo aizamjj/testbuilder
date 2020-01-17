@@ -75,8 +75,11 @@ var detectNetwork = function(cardNumber) {
      var lengths = network[i].lengths[k];
      var nwrk = network[i].name;
      // for visa conflict, first check for Switch, if the first four and six are a match along with length
-     if ((firstFour === pre || firstSix === pre) && len === lengths) {
+     if (firstFour === pre && len === lengths) {
        return nwrk;
+     }
+     else if (firstSix === pre && len === lengths) {
+      return nwrk;
      }
      //otherwise if the first digit is 4 and lengths match then it is Visa 
      else if (first === pre && len === lengths) {
