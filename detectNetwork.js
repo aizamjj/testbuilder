@@ -50,7 +50,7 @@ var detectNetwork = function(cardNumber) {
     lengths: [12, 13, 14, 15, 16, 17, 18, 19]
   },{
     name: "China UnionPay",
-    prefix: true,
+    prefix: [true],
     lengths: [16, 17, 18, 19]
   },{
     name: "Switch",
@@ -95,8 +95,8 @@ var detectNetwork = function(cardNumber) {
        return nwrk;
      }
      //if the prefix is true and the lengths match, return china UnionPay
-     else if (isChinaUnionPayPrefix(cardNumber) && len === lengths) {
-      return 'China UnionPay';
+     else if (isChinaUnionPayPrefix(cardNumber) === pre && len === lengths) {
+      return nwrk;
      }
    }
  }
