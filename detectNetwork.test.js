@@ -294,3 +294,58 @@ describe('Maestro', function() {
   });
 });
 
+describe('China UnionPay', function() {
+  var expect = chai.expect;
+  for (var len = 16; len <= 19; len++) {
+    for (var prefix = 622126; prefix <= 622925; prefix++) {
+      var rest = '0';
+      var card = prefix.toString() + rest.repeat(len - prefix.toString().length);
+      (function(card) {
+        it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
+          expect(detectNetwork(card)).to.equal('China UnionPay')
+        });
+      })(card) 
+    }
+  }
+  for (var len = 16; len <= 19; len++) {
+    for (var prefix = 624; prefix <= 626; prefix++) {
+      var rest = '0';
+      var card = prefix.toString() + rest.repeat(len - prefix.toString().length);
+      (function(card) {
+        it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
+          expect(detectNetwork(card)).to.equal('China UnionPay')
+        });
+      })(card) 
+    }
+  }
+  for (var len = 16; len <= 19; len++) {
+    for (var prefix = 6282; prefix <= 6288; prefix++) {
+      var rest = '0';
+      var card = prefix.toString() + rest.repeat(len - prefix.toString().length);
+      (function(card) {
+        it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
+          expect(detectNetwork(card)).to.equal('China UnionPay')
+        });
+      })(card) 
+    }
+  }
+});
+
+describe('Switch', function() {
+  var expect = chai.expect;
+  var switchPre = ["4903", "4905", "4911", "4936", "564182", "633110", "6333", "6759"];
+  for (var len = 16; len <= 19; len++) {
+    for(var i = 0; i < switchPre.length; i++) {
+      var prefix = switchPre[i];
+      var rest = '0';
+      var card = prefix + rest.repeat(len - prefix.length);
+      (function(card) {
+        it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
+          expect(detectNetwork(card)).to.equal('Switch')
+        });
+      })(card)
+    }
+  }
+});
+
+
