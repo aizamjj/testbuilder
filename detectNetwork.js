@@ -22,9 +22,13 @@ var detectNetwork = function(cardNumber) {
 
 
   // Once you've read this, go ahead and try to implement this function, then return to the console.
-  //Pseudocode:
+  // Pseudocode:
   // create a network array with card objects: name, length, and prefix
   var network = [{
+    name: "Switch",
+    prefix: ["4903", "4905", "4911", "4936", "564182", "633110", "6333", "6759"],
+    lengths: [16, 18, 19]
+  },{
     name: "Diner's Club",
     prefix: ["38", "39"],
     lengths: [14]
@@ -52,10 +56,6 @@ var detectNetwork = function(cardNumber) {
     name: "China UnionPay",
     prefix: [true],
     lengths: [16, 17, 18, 19]
-  },{
-    name: "Switch",
-    prefix: ["4903", "4905", "4911", "4936", "564182", "633110", "6333", "6759"],
-    lengths: [16, 18, 19]
   }];
   //create variable for card length
   var len = cardNumber.length;
@@ -71,7 +71,7 @@ var detectNetwork = function(cardNumber) {
    for (var j = 0; j < network[i].prefix.length; j++) {
      // iterate through the lengths
      for (var k = 0; k < network[i].lengths.length; k++) {
-     var pre = network[i].prefix[j];
+     var pre = network[i].prefix[j]; 
      var lengths = network[i].lengths[k];
      var nwrk = network[i].name;
      // for visa conflict, first check for Switch, if the first four and six are a match along with length
