@@ -115,7 +115,6 @@ function isChinaUnionPayPrefix(cardNumber) {
   if (firstThree === '622') {
     //if the next three match  126 - 925 then return true (convert to number)
     var nextThree = Number(cardNumber.slice(3, 6));
-    console.log(nextThree)
     if (nextThree >= 126 && nextThree <= 925) {
       return true;
     }
