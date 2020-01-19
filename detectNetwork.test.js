@@ -334,12 +334,25 @@ describe('China UnionPay', function() {
 describe('Switch', function() {
   var expect = chai.expect;
   var switchPre = ["4903", "4905", "4911", "4936", "564182", "633110", "6333", "6759"];
-  for (var len = 16; len <= 19; len++) {
+  for (var len = 16; len < 17; len++) {
     for(var i = 0; i < switchPre.length; i++) {
-      var prefix = switchPre[i];
+      var prefix = switchPre[i]; //prefix 4903
       var rest = '0';
-      var card = prefix + rest.repeat(len - prefix.length);
-      (function(card) {
+      var card = prefix + rest.repeat(len - prefix.length); //length = 16, prefix = 4; 
+      (function(card) { //'4903000000000000'
+        it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
+          expect(detectNetwork(card)).to.equal('Switch')
+        });
+      })(card)
+    }
+  }
+
+  for (var len = 18; len <= 19; len++) {
+    for(var i = 0; i < switchPre.length; i++) {
+      var prefix = switchPre[i]; //prefix 4903
+      var rest = '0';
+      var card = prefix + rest.repeat(len - prefix.length); //length = 16, prefix = 4; 
+      (function(card) { //'4903000000000000'
         it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
           expect(detectNetwork(card)).to.equal('Switch')
         });
